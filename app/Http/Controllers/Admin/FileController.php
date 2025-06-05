@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ArchivedFile;
 use App\Models\File;
 use Illuminate\Http\Request;
 
@@ -72,7 +73,9 @@ class FileController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $file = File::with('folder')->findOrFail($id);
+        $folder = $file->folder; // single folder model
+        return view('admin.files.edit', compact('file', 'folder'));
     }
 
     /**
@@ -81,6 +84,29 @@ class FileController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $file = File::findOrFail($id);
+        $request->validate([
+            'subject' => 'required|string|max:255',
+            'file.*' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,png,jpg,jpeg', // customize as needed
+        ]);
+        if ($request->hasFile('file')) {
+            // Delete old file if exists
+            if ($file->file) {
+                \Storage::disk('public')->delete($file->file);
+            }
+            $filePath = $request->file('file')->store('uploads/files', 'public'); // or change disk as needed
+            $file->file = $filePath;
+        }
+        $file->document_code = $request->document_code;
+        $file->subject = $request->subject;
+        $file->originating_office = $request->originating_office;
+        $file->remarks = $request->remarks;
+        $file->date = $request->date;
+        $file->folder_id = $request->folder_id;
+        $file->user_id = auth()->id();
+        $file->save();
+        return redirect()->route('admin.folders.show', $file->folder_id)
+            ->with('success', 'File updated successfully.');
     }
 
     /**
@@ -89,5 +115,28 @@ class FileController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    public function archive($id)
+    {
+        $file = File::findOrFail($id);
+
+        // Copy to archive
+        ArchivedFile::create($file->only([
+            'document_code',
+            'subject',
+            'originating_office',
+            'remarks',
+            'file',
+            'date',
+            'folder_id',
+            'user_id'
+        ]));
+
+        // Remove from files table
+        $file->delete();
+
+        return redirect()->back()->with('success', 'File archived successfully.');
     }
 }

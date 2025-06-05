@@ -71,6 +71,15 @@ class FolderController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:1000',
+        ]);
+        $folder = \App\Models\Folder::findOrFail($id);
+        $folder->name = $request->input('name');
+        $folder->description = $request->input('description');
+        $folder->save();
+        return redirect()->back()->with('success', 'Folder updated successfully.');
     }
 
     /**
