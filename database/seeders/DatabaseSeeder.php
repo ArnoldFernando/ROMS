@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             FolderSeeder::class,
             FileSeeder::class,
-
         ]);
     }
 }
