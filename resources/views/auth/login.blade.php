@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: 'Figtree', sans-serif;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
         }
 
         .card {
@@ -55,6 +57,21 @@
             color: #6a11cb;
             text-decoration: underline;
         }
+
+        .login-logo {
+            display: block;
+            margin: 0 auto 10px auto;
+            max-width: 100px;
+            height: auto;
+        }
+
+        .system-name {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
     </style>
 </head>
 
@@ -62,6 +79,12 @@
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
             <div class="col-md-6 col-lg-4">
+                <!-- Logo -->
+                <img src="{{ asset('image/csu.png') }}" alt="Logo" class="login-logo">
+
+                <!-- System Name -->
+                <div class="system-name">Records Office Management System</div>
+
                 <div class="card p-4">
                     <div class="card-header mb-3">{{ __('Login') }}</div>
                     <div class="card-body p-0">
@@ -119,6 +142,7 @@
             </div>
         </div>
     </div>
+
     <!-- Bootstrap JS (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

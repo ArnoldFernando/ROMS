@@ -12,7 +12,7 @@ class ArchivedFileController extends Controller
     //
     public function index()
     {
-        $files = ArchivedFile::where('user_id', auth()->id())->get(); // Fetch archived files for the authenticated user
+        $files = ArchivedFile::all(); // Fetch archived files for the authenticated user
         return view('admin.archived.index', compact('files'));
     }
     public function restore($id)

@@ -63,11 +63,11 @@ return [
     |
     */
 
-    'logo' => '<b>ROMS</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>Records Office</b>',
+    'logo_img' => 'image/csu.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
+    'logo_img_xl_class' => 'brand-image-sm',
     'logo_img_alt' => 'Admin Logo',
 
     /*
@@ -329,7 +329,7 @@ return [
         ],
         ['header' => 'Folder'],
         [
-            'text' => 'Folders',
+            'text' => 'Records Folders',
             'url' => 'admin/folders',
             'icon' => 'fas fa-fw fa-folder',
             'active' => ['admin/folders*'],
@@ -338,15 +338,22 @@ return [
         ['header' => 'Files'],
 
         [
-            'text' => 'Files',
+            'text' => 'All Records Files',
             'url' => 'admin/files',
             'icon' => 'fas fa-fw fa-file',
             'active' => ['admin/files*'],
         ],
 
         [
-            'text' => 'Archived Files',
+            'text' => 'Records Archived',
             'url' => 'admin/archived',
+            'icon' => 'fas fa-fw fa-box-archive',
+        ],
+        ['header' => 'Logs'],
+
+        [
+            'text' => 'Activity Logs',
+            'url' => 'admin/logs/files',
             'icon' => 'fas fa-fw fa-folder',
         ],
         // [

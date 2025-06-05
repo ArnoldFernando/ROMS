@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class File extends Model
 {
@@ -34,5 +36,17 @@ class File extends Model
     public function archivedFiles()
     {
         return $this->hasMany(ArchivedFile::class);
+    }
+
+
+    use LogsActivity;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly(['document_code', 'subject', 'originating_office'])
+            ->logOnlyDirty() // Optional: logs only if values actually changed
+            ->useLogName('file')
+            ->setDescriptionForEvent(fn(string $eventName) => "File has been {$eventName}");
     }
 }

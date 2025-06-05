@@ -14,7 +14,7 @@ class FolderController extends Controller
     public function index()
     {
         //
-        $folders = \App\Models\Folder::where('user_id', auth()->id())->get(); // Fetch folders for the authenticated user
+        $folders = Folder::all(); // Fetch all folders
         return view('admin.folders.index', compact('folders'));
     }
 

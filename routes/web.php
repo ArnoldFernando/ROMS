@@ -2,6 +2,7 @@
 
 use App\Exports\FilesByFolderExport;
 use App\Exports\FilesExport;
+use App\Http\Controllers\Admin\ActivityLogsController;
 use App\Http\Controllers\Admin\ArchivedFileController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\FolderController;
@@ -46,5 +47,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/export/files/folder/{folderId}', function ($folderId) {
             return Excel::download(new FilesByFolderExport($folderId), 'files_by_folder.xlsx');
         })->name('export.files.by.folder');
+
+        Route::get('/logs/files', [ActivityLogsController::class, 'showLogs'])->name('logs.files');
     });
 });

@@ -63,26 +63,87 @@
 
     @section('content')
         <div class="container">
+            <style>
+                .dashboard-card {
+                    border-radius: 1rem;
+                    background: #ffffff;
+                    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+                    transition: transform 0.3s, box-shadow 0.3s;
+                }
+
+                .dashboard-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+                }
+
+                .dashboard-title {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    color: #333;
+                    margin-bottom: 5px;
+                }
+
+                .dashboard-description {
+                    font-size: 0.9rem;
+                    color: #666;
+                    margin-bottom: 15px;
+                    font-style: italic;
+                }
+
+                .dashboard-number {
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                    color: #2575fc;
+                }
+
+                .dashboard-icon {
+                    font-size: 3rem;
+                    color: #6a11cb;
+                    margin-bottom: 15px;
+                }
+
+                .btn-primary {
+                    background-color: #2575fc;
+                    border: none;
+                }
+
+                .btn-primary:hover {
+                    background-color: #6a11cb;
+                }
+            </style>
+
             <div class="row g-4">
                 <div class="col-md-6">
-                    <div class="card dashboard-card text-center p-3">
+                    <div class="card dashboard-card text-center p-4">
                         <div class="card-body">
+                            <div class="dashboard-icon">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </div>
                             <h5 class="dashboard-title">Total Record Files</h5>
+                            <div class="dashboard-description">Keep Track of all records in the system</div>
                             <div class="dashboard-number">{{ $allfiles }}</div>
                             <a href="{{ route('admin.files.index') }}" class="btn btn-primary mt-3">View Files</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card dashboard-card text-center p-3">
+                    <div class="card dashboard-card text-center p-4">
                         <div class="card-body">
+                            <div class="dashboard-icon">
+                                <i class="bi bi-folder"></i>
+                            </div>
                             <h5 class="dashboard-title">Total Folders</h5>
+                            <div class="dashboard-description">View and manage folder contents</div>
                             <div class="dashboard-number">{{ $folders }}</div>
                             <a href="{{ route('admin.folders.index') }}" class="btn btn-primary mt-3">View Folders</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Bootstrap Icons CDN -->
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
         </div>
 
         <div class="container mt-5">
