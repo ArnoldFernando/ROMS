@@ -1,11 +1,14 @@
 <?php
 
+use App\Exports\FilesByFolderExport;
+use App\Exports\FilesExport;
 use App\Http\Controllers\Admin\ArchivedFileController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\FolderController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Facades\Excel;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +38,13 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('archived', ArchivedFileController::class);
 
         Route::get('/live-search', [HomeController::class, 'liveSearch'])->name('live.search');
+
+        Route::get('/export/files', function () {
+            return Excel::download(new FilesExport, 'files.xlsx');
+        })->name('files.export');
+
+        Route::get('/export/files/folder/{folderId}', function ($folderId) {
+            return Excel::download(new FilesByFolderExport($folderId), 'files_by_folder.xlsx');
+        })->name('export.files.by.folder');
     });
 });

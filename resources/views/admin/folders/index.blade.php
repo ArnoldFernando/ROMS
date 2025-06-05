@@ -50,7 +50,7 @@
     @stop
 
     @section('content')
-        <div class="container">
+        <div class="container mb-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <a href="{{ route('admin.folders.create') }}" class="btn btn-primary btn-create">
                     <i class="fas fa-plus me-1"></i> Create New Folder

@@ -50,11 +50,19 @@
         <div class="container-fluid">
 
 
-            <div>
-                <a href="{{ url()->previous() }}" class="btn btn-secondary mb-4">
-                    &larr; Go Back
-                </a>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary">
+                        &larr; Go Back
+                    </a>
+                </div>
+                <div>
+                    <a href="{{ route('admin.files.export') }}" class="btn btn-success">
+                        <i class="fas fa-file-excel"></i> Export Files to Excel
+                    </a>
+                </div>
             </div>
+
             <div class="card p-4">
                 <table class="table table-hover table-striped table-bordered" id="myTable">
                     <thead>

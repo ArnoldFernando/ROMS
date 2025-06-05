@@ -61,9 +61,12 @@
     @section('content')
         <div class="container-fluid mt-3">
 
-            <div>
+            <div class="d-flex justify-content-between mb-3 gap-2">
                 <a href="{{ url()->previous() }}" class="btn btn-secondary">
                     &larr; Go Back
+                </a>
+                <a href="{{ route('admin.export.files.by.folder', $folder->id) }}" class="btn btn-success">
+                    Export Files
                 </a>
             </div>
             <div class="table-responsive">
@@ -97,7 +100,8 @@
                                             data-bs-target="#viewFileModal{{ $file->id }}">
                                             <i class="bi bi-eye"></i> View
                                         </button>
-                                        <a href="{{ route('admin.files.edit', $file->id) }}" class="btn btn-sm btn-primary">
+                                        <a href="{{ route('admin.files.edit', $file->id) }}"
+                                            class="btn btn-sm btn-primary">
                                             <i class="bi bi-pencil"></i> Edit
                                         </a>
                                         <form action="{{ route('admin.files.archive', $file->id) }}" method="POST"

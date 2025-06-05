@@ -54,13 +54,13 @@
             <table class="table table-bordered table-striped table-hover" id="myTable" style="width: 100%;">
                 <thead>
                     <tr>
-                        <th>Document Code</th>
-                        <th>Subject</th>
-                        <th>Originating Office</th>
-                        <th>Remarks</th>
-                        <th>Date</th>
-                        <th>File</th>
-                        <th>Actions</th>
+                        <th>📑 Document Code</th>
+                        <th>📌 Subject</th>
+                        <th>🏢 Office</th>
+                        <th>📝 Remarks</th>
+                        <th>📅 Date</th>
+                        <th>📂 File</th>
+                        <th>⚙️ Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -149,16 +149,16 @@
                     }
                 },
                 language: {
-                    lengthMenu: " _MENU_ records per page",
-                    info: "Showing _START_ to _END_ of _TOTAL_ records",
-                    infoEmpty: "No records available",
-                    infoFiltered: "(filtered from _MAX_ total records)",
-                    search: "Search:",
+                    lengthMenu: "_MENU_ per page",
+                    info: "Showing _START_ to _END_ of _TOTAL_ files",
+                    infoEmpty: "No files found",
+                    infoFiltered: "(filtered from _MAX_ total)",
+                    search: "🔍",
                     paginate: {
                         first: "First",
                         last: "Last",
-                        next: "Next",
-                        previous: "Previous"
+                        next: "›",
+                        previous: "‹"
                     }
                 }
             });
@@ -173,6 +173,19 @@
                 $('#modal-lot_number').text(button.data('lot_number'));
                 $('#modal-status').text(button.data('status'));
             });
+        </script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ session('success') }}',
+                    confirmButtonText: 'OK'
+                });
+            @endif
         </script>
     @endsection
 </x-app-layout>
